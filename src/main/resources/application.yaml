@@ -1,0 +1,56 @@
+server.port: 8081
+debug: false
+management.endpoints.web.exposure.include: "*" # Spring Actuator를 통해 분석되는 감춰진 모든 endpoint를 볼 수 있게 해주는 설정
+logging:
+  level:
+    com.example.boardadmin: debug
+    org.springframework.web.servlet: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace # jpa 기술을 사용할 때 Query로그를 디버그 로그로 관찰 할 수 있는데. 그때 물음표로 나오는 값들을 실제 값으로 추적 해주는 설넥
+
+thymeleaf3:
+  decoupled-logic: true
+spring:
+  datasource:
+    url: ${LOCAL_DB_URL}
+    username: ${LOCAL_DB_USER}
+    password: ${LOCAL_DB_PASSWORD}
+  jpa:
+    defer-datasource-initialization: true #data.sql을 이용해 초기 데이터를 받아올 것인지에 대한 설정
+    hibernate.ddl-auto: create # entity를 보고 database schema를 알아서 만들어줄 것인지에 대한 설정
+    open-in-view: false
+    #open session in view를 설정하는 부분 (OSIV 개념)
+    #내가 구현한 서비스에서는 controller 레벨에서 영속성 컨텍스트가 살아있지 않도록 도메인 코드와 DTO 코드를 확실히 분리하여 서비스 코드에서 다 마무리 된 데이터를 컨트롤러에 옮기게 만듬.
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+      hibernate.default_batch_fetch_size: 100
+  sql.init.mode: always #data.sql을 언제 작동시킬 것인지에 대한 설정
+  devtools:
+    restart:
+      enabled: false
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: ${KAKAO_OAUTH_CLIENT_ID}
+            client-secret: ${KAKAO_OAUTH_CLIENT_SECRET}
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/kakao" #baseUrl을 유연하게 변경해주기 위해 특수 문자열을 사용함
+            client-authentication-method: client_secret_post
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+---
+spring:
+  config.activate.on-profile: test
+  datasource:
+    url: jdbc:h2:mem:board;mode=mysql
+    driverClassName: org.h2.Driver
+  sql.init.mode: always
+  test.database.replace: none #해당 속성을 써주지 않는다면 @DataJpaTest를 활용한 test 환경에서 testdb를 사용하도록 지정하여도 개발자가 지정한 설정들을 무시하고 test용 db를 자체적으로 생성한다.
