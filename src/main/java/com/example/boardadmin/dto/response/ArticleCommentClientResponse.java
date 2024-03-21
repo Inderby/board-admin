@@ -1,5 +1,6 @@
-package com.example.boardadmin.dto;
+package com.example.boardadmin.dto.response;
 
+import com.example.boardadmin.dto.ArticleCommentDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;

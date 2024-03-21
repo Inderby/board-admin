@@ -1,13 +1,12 @@
 package com.example.boardadmin.service;
 
 import com.example.boardadmin.domain.constant.RoleType;
-import com.example.boardadmin.dto.ArticleClientResponse;
+import com.example.boardadmin.dto.response.ArticleClientResponse;
 import com.example.boardadmin.dto.ArticleDto;
 import com.example.boardadmin.dto.UserAccountDto;
 import com.example.boardadmin.dto.properties.ProjectProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -158,7 +157,6 @@ class ArticleManagementServiceTest {
         private UserAccountDto createdUserAccount() {
             return UserAccountDto.of(
                     "inderby",
-                    Set.of(RoleType.ADMIN),
                     "email",
                     "derby",
                     "memo"

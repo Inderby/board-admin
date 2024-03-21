@@ -3,9 +3,8 @@ package com.example.boardadmin.service;
 import com.example.boardadmin.domain.constant.RoleType;
 import com.example.boardadmin.dto.*;
 import com.example.boardadmin.dto.properties.ProjectProperties;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.example.boardadmin.dto.response.ArticleCommentClientResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -170,7 +169,6 @@ class ArticleCommentManagementServiceTest {
     private UserAccountDto createUserAccountDto() {
         return UserAccountDto.of(
                 "unoTest",
-                Set.of(RoleType.ADMIN),
                 "uno-test@email.com",
                 "uno-test",
                 "test memo"
