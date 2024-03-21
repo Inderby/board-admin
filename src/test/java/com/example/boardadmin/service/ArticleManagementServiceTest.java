@@ -158,7 +158,6 @@ class ArticleManagementServiceTest {
         private UserAccountDto createdUserAccount() {
             return UserAccountDto.of(
                     "inderby",
-                    "temp",
                     Set.of(RoleType.ADMIN),
                     "email",
                     "derby",
