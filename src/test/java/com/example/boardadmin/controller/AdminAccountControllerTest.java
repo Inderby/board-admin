@@ -14,11 +14,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DisplayName("View 컨트롤러 - 게시글 댓글 관리")
 @Import(SecurityConfig.class)
-@WebMvcTest(AdminUserAccountController.class)
-class AdminUserAccountControllerTest {
+@WebMvcTest(AdminAccountController.class)
+class AdminAccountControllerTest {
     private final MockMvc mvc;
 
-    public AdminUserAccountControllerTest(@Autowired MockMvc mvc) {
+    public AdminAccountControllerTest(@Autowired MockMvc mvc) {
         this.mvc = mvc;
     }
 
