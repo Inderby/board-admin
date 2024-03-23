@@ -1,6 +1,7 @@
 package com.example.boardadmin.controller;
 
 import com.example.boardadmin.config.SecurityConfig;
+import com.example.boardadmin.config.TestConfig;
 import com.example.boardadmin.dto.UserAccountDto;
 import com.example.boardadmin.service.UserAccountManagementService;
 import org.junit.jupiter.api.DisplayName;
@@ -21,7 +22,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @DisplayName("View 컨트롤러 - 게시글 댓글 관리")
-@Import(SecurityConfig.class)
+@Import(TestConfig.class)
 @WebMvcTest(UserAccountManagementController.class)
 class UserAccountManagementControllerTest {
     private final MockMvc mvc;
