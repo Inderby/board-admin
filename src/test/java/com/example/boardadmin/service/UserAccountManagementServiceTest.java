@@ -111,7 +111,7 @@ class UserAccountManagementServiceTest {
         void givenUserAccountId_whenCallingUserAccountApi_thenReturnsUserAccount() throws Exception {
             // Given
             String userId = "inderby";
-            UserAccountDto expectedUserAccount = createUserAccountDto(userId, "Uno");
+            UserAccountDto expectedUserAccount = createUserAccountDto(userId, "inderby");
             server
                     .expect(requestTo(projectProperties.board().url() + "/api/userAccounts/" + userId))
                     .andRespond(withSuccess(
