@@ -20,7 +20,7 @@ import java.util.Set;
         @Index(columnList = "createdBy"),
 })
 @Entity
-public class UserAccount extends AuditingFields {
+public class AdminAccount extends AuditingFields {
     @Id @Column(length = 50) private String userId;
 
     @Setter @Column(nullable = false) private String userPassword;
@@ -33,10 +33,10 @@ public class UserAccount extends AuditingFields {
     @Setter @Column(length = 100) private String nickname;
     @Setter private String memo;
 
-    protected UserAccount() {
+    protected AdminAccount() {
     }
 
-    private UserAccount(String userId, String userPassword, Set<RoleType> roleTypes, String email, String nickname, String memo, String createdBy) {
+    private AdminAccount(String userId, String userPassword, Set<RoleType> roleTypes, String email, String nickname, String memo, String createdBy) {
         this.userId = userId;
         this.userPassword = userPassword;
         this.roleTypes = roleTypes;
@@ -48,13 +48,13 @@ public class UserAccount extends AuditingFields {
     }
 
     //이미 인증이 되어 있는 상태에서 유저의 정보가 필요 없을 경우
-    public static UserAccount of(String userId, String userPassword, Set<RoleType> roleTypes, String email, String nickname, String memo){
-        return new UserAccount(userId, userPassword, roleTypes,email, nickname,memo, null);
+    public static AdminAccount of(String userId, String userPassword, Set<RoleType> roleTypes, String email, String nickname, String memo){
+        return new AdminAccount(userId, userPassword, roleTypes,email, nickname,memo, null);
     }
 
     // 인증이 안되어 있는 상태이기 때문에 생성자 정보가 없는 경우
-    public static UserAccount of(String userId, String userPassword, Set<RoleType> roleTypes, String email, String nickname, String memo, String createdBy){
-        return new UserAccount(userId, userPassword, roleTypes, email, nickname,memo, createdBy);
+    public static AdminAccount of(String userId, String userPassword, Set<RoleType> roleTypes, String email, String nickname, String memo, String createdBy){
+        return new AdminAccount(userId, userPassword, roleTypes, email, nickname,memo, createdBy);
     }
 
     public void addRoleType(RoleType roleType){
@@ -71,8 +71,8 @@ public class UserAccount extends AuditingFields {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof UserAccount userAccount)) return false;
-        return this.getUserId() != null && this.getUserId().equals(userAccount.userId);
+        if (!(o instanceof AdminAccount adminAccount)) return false;
+        return this.getUserId() != null && this.getUserId().equals(adminAccount.userId);
     }
 
     @Override
