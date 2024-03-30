@@ -1,5 +1,6 @@
 package com.example.boardadmin.controller;
 
+import com.example.boardadmin.config.GlobalControllerConfig;
 import com.example.boardadmin.config.SecurityConfig;
 import com.example.boardadmin.config.TestConfig;
 import com.example.boardadmin.dto.UserAccountDto;
@@ -23,7 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @DisplayName("View 컨트롤러 - 게시글 댓글 관리")
-@Import(TestConfig.class)
+@Import({TestConfig.class, GlobalControllerConfig.class})
 @WebMvcTest(UserAccountManagementController.class)
 class UserAccountManagementControllerTest {
     private final MockMvc mvc;
